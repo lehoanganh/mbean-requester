@@ -40,11 +40,26 @@ install_ruby(){
 	echo "::: [INFO] Do NOT forget to set ruby 1.9.3 as default use"
 	echo "::: [INFO] $ . $HOME/.bashrc"
 	echo "::: [INFO] $ rvm --default use 1.9.3"
-	echo "::: [INFO] $ rvm install jruby --1.9"
+	echo "::: [INFO] $ rvm install jruby"
 	echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
 }
+
+# ================================================================
+
+# Time measurement
+start=$(date +%s)
+
 
 welcome
 apt_update
 install_needed_packages
 install_ruby
+
+# Time measurement
+end=$(date +%s)
+
+diff=$(( $end - $start ))
+
+echo ":::::::::::::::::::::::::::::::::"
+echo "::: Elapsed Time: $diff seconds!!"
+echo ":::::::::::::::::::::::::::::::::"

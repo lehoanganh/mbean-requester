@@ -20,4 +20,10 @@ OS: Ubuntu 11.10 x64
 * Set ruby 1.9.3 as default
  $ rvm --default use 1.9.3
 * Install jruby
- $ rvm install jruby --1.9 
+ $ rvm install jruby
+* Install jmx4r
+ $ jruby-1.6.8 -S gem install jmx4r
+
+= USE
+Just run
+ $ jruby-1.6.8 -S requester.rb
