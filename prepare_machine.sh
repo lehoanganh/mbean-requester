@@ -11,7 +11,7 @@ apt_update(){
 	echo "::::::::::::::::::::::"
 	echo "::: Update Apt Repo..." 
 	echo "::::::::::::::::::::::"
-	sudo apt-get update -y
+	sudo apt-get update -qq
 }
 
 install_needed_packages(){
@@ -21,7 +21,7 @@ install_needed_packages(){
 	sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g \
 					zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev \
 					autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config \
-					curl g++ openjdk-6-jre-headless -y
+					curl g++ openjdk-6-jre-headless -qq
 }
 
 install_ruby(){
@@ -41,6 +41,7 @@ install_ruby(){
 	echo "::: [INFO] $ . $HOME/.bashrc"
 	echo "::: [INFO] $ rvm --default use 1.9.3"
 	echo "::: [INFO] $ rvm install jruby"
+	echo "::: [INFO] $ jruby-1.6.8 -S gem install jmx4r"
 	echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
 }
 
