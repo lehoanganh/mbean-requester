@@ -25,5 +25,35 @@ port = gets
 port = port.chomp # delete the last enter character
 
 JMX::MBean.establish_connection :host => host, :port => port.to_i
-caches = JMX::MBean.find_by_name "org.apache.cassandra.db:type=Caches"
-puts caches.key_cache_size
+
+mbean = "dummy"
+
+puts "------------------------------------------------------"
+puts "Which MBean? (e.g org.apache.cassandra.db:type=Caches)"
+puts "------------------------------------------------------"
+
+mbean_name = gets
+mbean_name = mbean_name.chomp
+
+mbean = JMX::MBean.find_by_name mbean_name
+
+puts "-------------------------------------------------------------------------"
+puts "There are following attributes that are available for the selected MBean:"
+puts "-------------------------------------------------------------------------"
+
+puts mbean.attributes.keys
+
+attribute_name = "dummy"
+
+puts "-----------------------------------------------------------------"
+puts "Which attribute do you want to request, please type it correctly?"
+puts "-----------------------------------------------------------------"
+
+attribute_name = gets
+attribute_name = attribute_name.chomp
+
+puts "------------------------------------------------------"
+puts "The value of this selected attribute #{attribute_name}"
+puts "------------------------------------------------------"
+
+puts mbean.send(attribute_name.to_sym)
