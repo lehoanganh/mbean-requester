@@ -21,8 +21,18 @@ install_needed_packages(){
 	sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g \
 					zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev \
 					autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config \
-					curl g++ openjdk-6-jre-headless -qq
+					curl g++ -qq
 }
+
+install_java(){
+	echo ":::::::::::::::::::::::::::::"
+	echo "::: Installing Oracle Java..."
+	echo ":::::::::::::::::::::::::::::"
+	curl -L https://raw.github.com/flexiondotorg/oab-java6/master/oab-java.sh -s | sudo bash
+	sudo apt-get install sun-java6-jdk -qq
+	export JAVA_HOME=/usr/lib/jvm/java-6-sun
+}
+
 
 install_ruby(){
 	echo "::::::::::::::::::::::::::::::"
@@ -42,7 +52,15 @@ install_ruby(){
 	echo "::: [INFO] $ rvm --default use 1.9.3"
 	echo "::: [INFO] $ rvm install jruby"
 	echo "::: [INFO] $ jruby-1.6.8 -S gem install jmx4r"
+	echo "::: [INFO] $ jruby-1.6.8 -S mbean-requester/requester.rb"
 	echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+}
+
+git_clone(){
+	echo ":::::::::::::::::::::"
+	echo "::: Clone the project"
+	echo ":::::::::::::::::::::"
+	git clone git://github.com/lehoanganh/mbean-requester.git
 }
 
 # ================================================================
@@ -50,11 +68,12 @@ install_ruby(){
 # Time measurement
 start=$(date +%s)
 
-
 welcome
 apt_update
 install_needed_packages
+install_java
 install_ruby
+git_clone
 
 # Time measurement
 end=$(date +%s)
