@@ -24,6 +24,13 @@ install_needed_packages(){
 					curl g++ -qq
 }
 
+git_clone(){
+	echo ":::::::::::::::::::::"
+	echo "::: Clone the project"
+	echo ":::::::::::::::::::::"
+	git clone git://github.com/lehoanganh/mbean-requester.git
+}
+
 install_java(){
 	echo ":::::::::::::::::::::::::::::"
 	echo "::: Installing Oracle Java..."
@@ -32,7 +39,6 @@ install_java(){
 	sudo apt-get install sun-java6-jdk -qq
 	export JAVA_HOME=/usr/lib/jvm/java-6-sun
 }
-
 
 install_ruby(){
 	echo "::::::::::::::::::::::::::::::"
@@ -56,13 +62,6 @@ install_ruby(){
 	echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
 }
 
-git_clone(){
-	echo ":::::::::::::::::::::"
-	echo "::: Clone the project"
-	echo ":::::::::::::::::::::"
-	git clone git://github.com/lehoanganh/mbean-requester.git
-}
-
 # ================================================================
 
 # Time measurement
@@ -71,9 +70,9 @@ start=$(date +%s)
 welcome
 apt_update
 install_needed_packages
+git_clone
 install_java
 install_ruby
-git_clone
 
 # Time measurement
 end=$(date +%s)
